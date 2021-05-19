@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="OrdersByDay"
+		Description="Order by Day.">
+		<ReportParameters>
+			<ReportParameter Id="StartDate" Description="Start Date" Type="DATA"/>
+			<ReportParameter Id="EndDate" Description="End Date" Type="DATA"/>
+		</ReportParameters>
+		<Recordset Id="OrdersByDay" DefaultSortColumn="OrderID"
+			Description="List #orders by day" PageSize="10">
+			<Sql><![CDATA[select OrderDate, sum(Freight) SumFreight, avg(Freight) AvgFreight
+from Orders 
+where OrderDate >= #{StartDate} and OrderDate <= #{EndDate} 
+group by OrderDate
+			]]></Sql>
+			<Columns>
+				<Column Id="OrderDate" Type="DATE"/>
+				<Column Id="SumFreight" Type="DOUBLE"/>
+			</Columns>
+			<Chart Type="AnnotatedTimeLine">
+				<ChartColumn RefId="OrderDate" />
+				<ChartColumn RefId="SumFreight" />
+				<ChartColumn RefId="AvgFreight" />
+				<Param Name="displayAnnotations" Value="true"/>
+				<Param Name="fill" Value="30"/>
+			</Chart>
+		</Recordset>
+
+	</Report>
+	<Report Id="OrdersByShipperFiltering"
+		Description="Order by Shipper." TemplateName="A4Landscape.html">
+		<Recordset Id="OrdersByShipperFiltering" DefaultSortColumn="OrderID"
+			Description="List of orders shipped by an specific shipper company"
+			PageSize="17">
+			<Sql><![CDATA[SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, 
+ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, 
+ShipRegion, ShipPostalCode, ShipCountry FROM Orders 
+			]]></Sql>
+			<Columns>
+				<Column Id="ShipVia" AllowFilter="true" />
+				<Column Id="ShipCountry" AllowFilter="true" />
+				<Column Id="OrderID" Display="false" />
+				
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

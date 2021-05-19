@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tears-api" />
+        <module name="tears-castor" />
+        <module name="tears-core" />
+        <module name="tears-plugin-dao-csv" />
+        <module name="tears-plugin-dao-excel" />
+        <module name="tears-plugin-dao-rss" />
+        <module name="tears-plugin-scheduler" />
+        <module name="tears-webapp" />
+        <module name="tears-xml-control" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tears-api" target="1.6" />
+      <module name="tears-castor" target="1.6" />
+      <module name="tears-core" target="1.6" />
+      <module name="tears-parent" target="1.6" />
+      <module name="tears-plugin-dao-csv" target="1.6" />
+      <module name="tears-plugin-dao-excel" target="1.6" />
+      <module name="tears-plugin-dao-rss" target="1.6" />
+      <module name="tears-plugin-scheduler" target="1.6" />
+      <module name="tears-webapp" target="1.6" />
+      <module name="tears-xml-control" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

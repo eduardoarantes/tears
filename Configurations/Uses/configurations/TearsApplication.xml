@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TearsApplication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/TearsApplication.xsd"
+	Version="1.0">
+	<Startup ClassName="br.com.trgs.tears.scheduler.TearsSchedulerPlugin"
+		Name="Scheduler" />
+</TearsApplication>

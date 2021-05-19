@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0">
+	<Report Id="PDFSample"
+		Description="Relatório que exibe a lista dos 10 produtos mais caros"
+		Title="Ten Most Expensive Products" TemplateName="PDF:PDFSample.html">
+		<Recordset Id="TenMostExpensiveProductsDefault" Description="Descrição da tabela">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Description="Gráfico da tabela acima" />
+		</Recordset>
+	</Report>
+	<Report Id="PDFSampleAnotherTemplate"
+		Description="Relatório que exibe a lista dos 10 produtos mais caros"
+		Title="Ten Most Expensive Products" TemplateName="PDFSample2.html">
+		<Recordset Id="TenMostExpensiveProductsDefault" Description="Descrição da tabela">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Description="Gráfico" >
+				<Param Name="width" Value="450" ApplyTo="pdf"/>
+				<Param Name="height" Value="450" ApplyTo="pdf"/>
+			</Chart>
+		</Recordset>
+	</Report>
+</Reports>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.2/Report.xsd"
+	Version="1.0">
+	<Report Id="SimpleDateFilter" Title="Simple Date Filter"
+		Description="This report has two date filter. You can select on the calendar or type it.">
+		<ReportParameters>
+			<ReportParameter Id="StartDate" Description="Start Date - Use 1996-07-01"
+				Type="DATE" />
+			<ReportParameter Id="EndDate" Description="End Date - Use 1996-07-31 "
+				Type="DATE" />
+		</ReportParameters>
+		<Recordset Id="SimpleDateFilter" Title="Simple Date Filter" DefaultSortColumn="OrderID"
+			Description="This report has two date filter. You can select on the calendar or type it. Page Size is defined to 10"
+			PageSize="10">
+			<Sql><![CDATA[select OrderDate, sum(Freight) SumFreight, avg(Freight) AvgFreight
+from Orders 
+where OrderDate >= #{StartDate} and OrderDate <= #{EndDate} 
+group by OrderDate
+			]]></Sql>
+			<Columns>
+				<Column Id="OrderDate" Type="DATE" />
+				<Column Id="SumFreight" Type="DOUBLE" />
+			</Columns>
+		</Recordset>
+	</Report>
+	<Report Id="DatabaseDropDown" Title="Database DropDown"
+		Description="This report has a dropdown filter which values came from database"
+		TemplateName="A4Landscape.html">
+		<ReportParameters>
+			<ReportParameter Id="idShipper" Type="QUERY"
+				Description="Select the Shipper">
+				<ReportParameterSql>
+					<sql><![CDATA[
+SELECT ShipperID AS "KEY" , CompanyName "VALUE" FROM Shippers
+				]]></sql>
+				</ReportParameterSql>
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="DatabaseDropDown" Title="Database DropDown"
+			Description="This report has a dropdown filter which values came from database. Freight Column is formated">
+			<Sql><![CDATA[SELECT OrderID, CustomerID, OrderDate, RequiredDate, 
+ShippedDate, ShipVia, (-1*Freight) Freight, ShipName, 
+ShipRegion, ShipPostalCode, ShipCountry FROM Orders 
+WHERE ShipVia= #{idShipper}
+			]]></Sql>
+			<Columns>
+				<Column Id="RequiredDate" Type="DATE" Format="yyyy-MM-dd" />
+				<Column Id="Freight" Type="DOUBLE" Format="#.##" />
+			</Columns>
+		</Recordset>
+	</Report>
+	<Report Id="StaticRadioFilter" Title="Static Radio Filter"
+		Description="Static Radio values are fixed in the configuration" TemplateName="A4Landscape.html">
+		<ReportParameters>
+			<ReportParameter Id="status" Type="RADIO"
+				Description="Products status">
+				<ReportParameterMap Key="1" MessageKey="Active" />
+				<ReportParameterMap Key="0" MessageKey="Discontinued" />
+				<ReportParameterMap Key="%" MessageKey="All" />
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="StaticRadioFilter" Title="Static Radio Filter"
+			Description="Static Dropdown values are fixed in the configuration. NOTE: Column Status is mapped. Active is 1 and Discontinued is 0">
+			<Sql><![CDATA[SELECT DISTINCT Products.*, Categories.CategoryName
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+where Discontinued = #{status}
+			]]></Sql>
+			<Columns>
+				<Column Id="Discontinued" Description="ProductStatus" Type="MAPPED" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

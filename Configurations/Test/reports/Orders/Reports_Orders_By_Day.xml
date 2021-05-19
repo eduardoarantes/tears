@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="OrdersByDayMotion"
+		Description="Order by Day.">
+
+		<Recordset Id="OrdersByDayMotion" DefaultSortColumn="OrderID"
+			Description="List #orders by day" PageSize="6" Display="false">
+			<Sql><![CDATA[
+select 'AvgFreight' Info ,OrderDate,  avg(Freight) Consolidado
+from Orders o1
+where OrderDate >= '1996-07-01' and OrderDate <= '1996-07-31' 
+group by OrderDate
+union
+select 'TotalFreight' Info ,OrderDate,
+(SELECT SUM(Freight) from Orders o2 where o2.OrderDate <= o1.OrderDate) Consolidado
+from Orders o1
+where OrderDate >= '1996-07-01' and OrderDate <= '1996-07-31' 
+group by OrderDate
+			]]></Sql>
+			<Columns>
+				<Column Id="OrderDate" Type="DATE"/>
+			</Columns>
+			<Chart Type="MotionChart">
+			    <ChartColumn RefId="Info" />
+				<ChartColumn RefId="OrderDate" />
+				<ChartColumn RefId="Consolidado" />
+			</Chart>
+		</Recordset>
+
+	</Report>
+</Reports>

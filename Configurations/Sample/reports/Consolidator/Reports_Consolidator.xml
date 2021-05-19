@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="ConsolidatorWithoutDetails" Description="Display the products per category">
+		<Recordset Id="OriginalData"
+			Description="The consolidator is on the table below"
+			PageSize="10" AllowExport="false" Display="true">
+			<Sql><![CDATA[SELECT DISTINCT Products.*, Categories.CategoryName
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+			]]></Sql>
+			<Columns>
+				<Column Id="Discontinued" Type="MAPPED" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+				<Column Id="SupplierID" AllowFilter="true" Type="INTEGER"/>
+			</Columns>
+			<GroupBy Id="ConsolidatedData" Description="Number of Product, Sum of Units in Stock and Average Units in Stock by Category">
+				<GroupByColumn Id="CategoryName" RefId="CategoryName"/>
+				<CalculatedColumn Id="Products" RefId="ProductID" Type="INTEGER"
+					Consolidator="count" Description="#Products"/>
+				<CalculatedColumn RefId="UnitsInStock" Type="INTEGER"
+					Consolidator="sum" Description="#UnitsInStock" />
+				<CalculatedColumn Id="AverageUnitsInStock" RefId="UnitsInStock" Type="DOUBLE"
+					Consolidator="average" Description="#AverageUnitsInStock" Format="#.00"/>
+				<Chart>
+					<Param Name="static" Value="true"/>
+				</Chart>
+			</GroupBy>
+		</Recordset>
+	</Report>
+</Reports>

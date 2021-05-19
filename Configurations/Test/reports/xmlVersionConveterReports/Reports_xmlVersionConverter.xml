@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="Relatorios_xmlVersionConverter" Description="Relatorios de csv" ConnectionId="csvFiles">
+		<Recordset Id="CSVTest" Description="Todos os valores do arquivo">
+			<Config Name="Path"><Content>candidatosNaoAvaliados.csv</Content></Config>
+		</Recordset>
+		<Recordset Id="CSVTestColumns" Description="Todos os valores do arquivo com as colunas configuradas">
+			<Config Name="Path"><Content>candidatosNaoAvaliados.csv</Content></Config>
+			<Columns>
+				<Column Id="ID" Type="INTEGER"/>
+				<Column Id="NOME" Type="TEXT"/>
+				<Column Id="SOBRENOME" Type="TEXT"/>
+				<Column Id="APELIDO" Type="TEXT"/>
+				<Column Id="SEXO" Type="TEXT"/>
+				<Column Id="IDENTIDADE" Type="TEXT"/>
+				<Column Id="TIPO_IDENTIDADE" Type="TEXT"/>
+				<Column Id="CPF" Type="TEXT"/>
+				<Column Id="EMAIL" Type="TEXT"/>
+				<Column Id="TIPOLOGRADOURO" Type="TEXT"/>
+				<Column Id="LOGRADOURO" Type="TEXT"/>
+				<Column Id="COMPLEMENTO" Type="TEXT"/>
+				<Column Id="BAIRRO" Type="TEXT"/>
+				<Column Id="CIDADE" Type="TEXT"/>
+				<Column Id="CEP" Type="INTEGER"/>
+				<Column Id="ESTADO" Type="TEXT"/>
+				<Column Id="TELEFONE" Type="TEXT"/>
+				<Column Id="ESCOLARIDADE" Type="TEXT"/>
+				<Column Id="PROFISSAO" Type="TEXT"/>
+				<Column Id="RENDA_FAMILIAR" Type="TEXT"/>
+				<Column Id="AREA_ATUACAO" Type="TEXT"/>
+				<Column Id="TIPO_ACESSO_WEB" Type="TEXT"/>
+				<Column Id="IDIOMA" Type="TEXT"/>
+				<Column Id="TELEFONE2" Type="TEXT"/>
+				<Column Id="CARGO" Type="TEXT"/>
+				<Column Id="ESTABELECIMENTO" Type="TEXT"/>
+				<Column Id="ACESSA_WEB" Type="TEXT"/>
+				<Column Id="LOCAL_ACESSO_WEB" Type="TEXT"/>
+				<Column Id="ID_CIDADE" Type="TEXT"/>
+				<Column Id="DATA_CADASTRO" Type="DATE" Format="dd-MM-yyyy"/>
+				<Column Id="CONTATO" Type="TEXT"/>
+				<Column Id="TELEFONE_EMPRESA" Type="TEXT"/>
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

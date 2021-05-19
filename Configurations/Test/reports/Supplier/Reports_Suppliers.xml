@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd" Version="1.0.1">
+	<Report Id="SupplierList" 
+		Description="Alphabetical List of Suppliers" >
+		<Recordset Id="SupplierList" DefaultSortColumn="CompanyName"
+			Description="Simple SQL" AllowExport="csv,pdf" StyleClass="RecordSetClass">
+			<Sql><![CDATA[SELECT SupplierID, CompanyName, ContactName, ContactTitle
+, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage
+FROM Suppliers
+			]]></Sql>
+		<Columns>
+			<Column Id="SupplierID" StyleClass="ColumnClass">
+				<Url ReportId="SupplierList"
+					Description="Click here to see Product list for this category">
+				</Url>
+				<Url ReportId="SupplierList"
+					Description="Click here to see Product list for this category">
+				</Url>
+				<Url ReportId="SupplierList"
+					Description="Click here to see Product list for this category">
+				</Url>
+			</Column>
+		</Columns>
+		</Recordset>
+	</Report>
+</Reports>

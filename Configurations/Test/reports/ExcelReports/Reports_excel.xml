@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="Relatorios_excel" Description="Relatorios de Excel"
+		ConnectionId="excelFiles">
+		<Recordset Id="EXCELTest" Description="Todos os valores do arquivo">
+			<Config Name="FileName" Value="AlunosCadastrados.xls" />
+			<Columns>
+				<Column Id="Region" MappedDataNotFound="NAO encontrado" AllowFilter="true">
+					<ColumnMap Key="AM" MessageKey="Amazonas" />
+					<ColumnMap Key="PE" MessageKey="Pernambuco" />
+					<ColumnMap Key="SP" MessageKey="S&amp;atilde;o Paulo" />
+					<ColumnMap Key="BA" MessageKey="Bahia" />
+				</Column>
+			</Columns>
+		</Recordset>
+		<Recordset Id="EXCELTest_NoHeader" Description="Todos os valores do arquivo">
+			<Config Name="FileName" Value="AlunosCadastradosNoHeader.xls" />
+			<Config Name="FirstRowHeader" Value="false" />
+		</Recordset>
+
+	</Report>
+</Reports>

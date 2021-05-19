@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd"
+	Version="1.0">
+	<Report Id="ChartSampleWithTable" Description="Simple charts with table">
+		<Recordset Id="DefaulChartType" Description="Default chart Type is defined to be Column" AllowExport="HTML,PDF">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Provider="google" />
+		</Recordset>
+	</Report>
+	<Report Id="DynamicChartSample" Description="Dynamic Charts without table">
+		<Recordset Id="DefaulChartType" Description="Default chart Type is defined to be Column"
+			Display="false" AllowExport="HTML">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Provider="google"/>
+		</Recordset>
+		<Recordset Id="PieChart" Description="Pie chart" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="pie"  Provider="google"/>
+		</Recordset>
+		<Recordset Id="LineChart" Description="Line" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="line"  Provider="google"/>
+		</Recordset>
+		<Recordset Id="BarChart" Description="Ten Most Expensive Products"
+			Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="bar"  Provider="google"/>
+		</Recordset>
+		<Recordset Id="Column" Description="Column" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="column"  Provider="google"/>
+		</Recordset>
+		<Recordset Id="StackedBar" Description="Column" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="bar"  Provider="google">
+				<Param Name="isStacked" Value="true"/>
+				<Param Name="isVertical" Value="true"/>
+			</Chart>
+		</Recordset>
+		<Recordset Id="StackedColumn" Description="Column" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="column"  Provider="google">
+				<Param Name="isStacked" Value="true"/>
+			</Chart>
+		</Recordset>
+	</Report>
+
+	<Report Id="StaticChartSample" Description="Static Charts without table">
+		<Recordset Id="DefaulChartType" Description="Default chart Type is defined to be Column"
+			Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart />
+		</Recordset>
+		<Recordset Id="PieChart" Description="Pie chart" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="pie"/>
+		</Recordset>
+		<Recordset Id="LineChart" Description="Line" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="line"/>
+		</Recordset>
+		<Recordset Id="BarChart" Description="Ten Most Expensive Products"
+			Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="bar"/>
+		</Recordset>
+		<Recordset Id="Column" Description="Column" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="column"/>
+		</Recordset>
+		<Recordset Id="StackedBarChart" Description="Ten Most Expensive Products"
+			Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="bar">
+				<Param Name="isStacked" Value="true"/>
+			</Chart>
+		</Recordset>
+		<Recordset Id="StackedColumn" Description="Column" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+			<Chart Type="column">
+				<Param Name="isStacked" Value="true"/>
+			</Chart>
+		</Recordset>
+		
+	</Report>
+</Reports>

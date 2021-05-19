@@ -1,0 +1,34 @@
+.groupByHeader{
+	display:block;
+}
+span.groupByHeader{
+	border:none;
+	text-align: left;
+}
+span.groupByHeader.level_0{
+	display:none;
+	padding-left:3px;
+}
+span.groupByHeader.level_0.first{
+	display:block;
+	font-weight:bold;
+	border-top:2px solid #800000;
+}
+span.groupByHeader.level_1{
+	padding-left:10px;
+	background-color: #e3e3e3;
+	border-top:1px solid #800000;
+	font-style: italic;
+}
+span.groupByHeader.level_2{
+	padding-left:10px;
+}
+span.groupByHeader.level_3{
+	padding-left:10px;
+}
+span.groupByHeader.level_4{
+	padding-left:10px;
+}
+.groupByHeaderSeparator{
+	display:none;
+}

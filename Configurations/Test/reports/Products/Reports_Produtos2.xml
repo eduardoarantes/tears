@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="ProductListByCategory" Description="Alphabetical List of Products by Category"
+		IsMainReport="false">
+		<ReportParameters>
+			<ReportParameter Id="categoryID" Required="true"
+				Description="Category Id" Type="INTEGER" />
+		</ReportParameters>
+		<Recordset Id="ProductListByCategory" DefaultSortColumn="ProductName"
+			Description="Report with parameters. It's a sub report, can not be accesed from main menu. It also contains a link to supplier detail">
+			<Sql><![CDATA[SELECT DISTINCT Products.*, Categories.CategoryName
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+WHERE Categories.CategoryID = #{categoryID}
+			]]></Sql>
+			<Columns>
+				<Column Id="SupplierID">
+					<Url ReportId="Supplier"  OpenInLine="true" Description="click here to see supplier details">
+						<UrlParameter Name="supplierID">SupplierID</UrlParameter>
+					</Url>
+				</Column>
+				<Column Id="Discontinued" Type="TEXT" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

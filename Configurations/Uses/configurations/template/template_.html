@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4 landscape;
+				margin-top: 0.65in;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 0.25in;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: "Produzido por Trigger Soluções Ltda.";
+					background-image: url("http://localhost:8080/tears/images/head.gif");
+					background-repeat: no-repeat;
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+				@bottom-center {
+					content: "Page " counter(page) " of " counter(pages);
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+			}
+			
+			table.report{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.report th{
+				text-align: center;
+				font-size: 8pt;
+				background-color: #bbb;
+			}
+			table.report tr.rowtype0{
+				background-color: #fdd;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.report tr.rowtype1{
+				background-color: #fff;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.report tr td{
+				border: 0px;
+				padding: 2px;
+				margin: 0px;
+				font-size: 6pt;	
+			}
+			table.header{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.header tr td.label{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: right;
+			}
+			table.header tr td.value{
+				border: 1px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: left;
+			}
+			#content{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="content">
+			
+			<table class="header">
+				<tr><td class="label">Id: </td><td class="value">#nullHandle($entry.key.id)</td></tr>
+				<tr><td class="label">Description: </td><td class="value">#nullHandle($entry.key.description)</td></tr>
+			</table>
+			
+			<table class="report">
+				<tr class="rowtype1">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+				<tr class="rowtype0">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+				<tr class="rowtype1">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+								<tr class="rowtype0">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+								<tr class="rowtype1">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+								<tr class="rowtype0">
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+					<td>$column.value.formatedValue</td><td>$column.value.formatedValue</td>
+				</tr>
+				
+			</table>
+	</div>
+	</body>
+</html>

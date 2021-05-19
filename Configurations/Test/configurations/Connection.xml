@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="./tears-castor/src/main/resources/Connection.xsd" Version="1.0">
+	<ConnectionList defaultConnection="jdbc/northwind_remoto">
+		<ReportConnection Id="jdbc/northwind_remoto" Username="tears"
+			Password="tears*01" Type="jdbc">
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="ValidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://mysql.triggersolucoes.com/tears_northwind?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+		</ReportConnection>
+		<ReportConnection Id="jdbc/northwind" Username="root"
+			Password="sa" Type="jdbc">
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="ValidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://localhost/tears_northwind?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+		</ReportConnection>
+		<ReportConnection Id="nasdaq" Type="rss">
+			<Param Name="Url"
+				Value="http://www.nasdaq.com/aspxcontent/NasdaqRSS.aspx?data=uvup" />
+		</ReportConnection>
+		<ReportConnection Id="csvFiles" Type="csv">
+			<Param Name="RootPath"
+				Value="C:\\env\\workspace\\TEARS\\tears-webapp\\src\\main\\resources\\Test\\configurations\\csvfolder\\" />
+		</ReportConnection>
+		<ReportConnection Id="excelFiles" Type="excel">
+			<Param Name="RootPath"
+				Value="D:\\env\\WorkSpaces\\frm\\TEARS\\tears-webapp\\src\\main\\resources\\Test\\configurations\\excelfolder\\" />
+		</ReportConnection>
+	</ConnectionList>
+</Connections>

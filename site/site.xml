@@ -1,0 +1,14 @@
+ <?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+  <bannerLeft>
+    <name>Trigger Easy Application Reporting</name>
+    <src>http://www.trgs.com.br/templates/trigger2/images/header.png</src>
+    <href>http://www.trgs.com.br/</href>
+  </bannerLeft>
+  <body>
+    <links>
+      <item name="Trigger Soluções" href="http://www.trgs.com.br/"/>
+    </links>
+
+  </body>
+</project>

@@ -1,0 +1,3 @@
+A configuração de filtros para os dados é bastante simples e poderosa.<br/>
+Os filtros podem ser definidos com: Texto, número e data. <br/>
+Os campos podem ser exbidos como: dropdown, radio e texto.

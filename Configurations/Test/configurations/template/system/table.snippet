@@ -1,0 +1,35 @@
+#set($page = 1)
+
+	#set($rowCount = 0)
+	
+	#foreach($columns in $recordsetData)
+		#set($rowCount = $rowCount + 1)
+
+		#if($rowCount == 1)
+		<div class="recordset_container recordset_container_$recordset.id recorset_container_$recordsetCount recorset_container_page_$page">
+			<table class="surroundTable surroundTable_$recordset.id" >
+				<tr><td class="left"></td>
+				<td>
+			<table class="recordset table_header_paginate recordset_$recordset.id recorset_$recordsetCount">
+			<thead>
+			#foreach($column in $columns)
+				<th class="$column.column.dataType">$column.column.description</th>
+			#end
+			</thead>
+			<tbody>
+		#end
+		#set($row = $rowCount % 2)
+		<tr class="rowtype$row">
+		#foreach($column in $columns)
+			<td class="$column.column.dataType">$column.value.formatedValue</td>
+		#end
+		</tr>
+	#end
+#if($rowCount != 0)
+		</tbody>
+		</table>
+		</td>
+		<td class="right"></td>
+		</tr></table>
+	</div>
+#end

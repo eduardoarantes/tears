@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Trigger Easy Application Reporting System</title>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+<body>
+
+<div id="banner">
+	<span class="appTitle">Trigger Easy Application Reporting System</span>
+	
+	<div class="clear"><hr/></div>
+</div>
+<div id="breadcrumbs">
+	<div class="xleft">
+        Last Published: Mar, 03, 2010
+    </div>
+    <div class="xright">
+    	<a href="http://displaytag.homeip.net/displaytag-examples-1.2" class="externalLink">Live examples</a>
+	</div>
+    <div class="clear">
+        <hr/>
+    </div>
+</div>
+<div id="leftColumn">
+	<div id="navcolumn">
+		<h5>Reference</h5>
+        <ul>
+    		<li class="none"><a href="index.html">About</a></li>
+    		<li class="none"><a href="index.html">About</a></li>
+        </ul>
+        <h5>Displaytag Extensions</h5>
+        <ul> 
+    		<li class="none"><a href="portlet.html">Jsr-168 Portlet support</a></li>
+        </ul>
+        <h5>Developers</h5>
+        <ul>
+        	<li class="none"><a href="coding_conventions.html">Coding Conventions</a></li>
+   		</ul>
+	</div>
+</div>
+<div id="bodyColumn">
+	<div id="contentBox">
+		<h2>O que é?</h2>
+		<p>Sistema para geração de relatórios baseado em Banco de dados
+		Relacional.</p>
+		<h2>Por que usar?</h2>
+		
+		
+		<p>O <b><i>TEARS</i></b> permite a geração de relatórios de forma
+		simples e rápida. Um simples SQL e um relatório com paginação e ordenação está pronto.</p>
+		
+		<p>Um pouco mais de configuração e é possível criar filtros, links e
+		consolidadores, gerando relatórios super completos.</p>
+		
+		<p>Podendo ser exportados para pdf, csv ou excel.</p>
+		
+		<h2>O que é preciso para rodar o <b><i>TEARS</i></b> ?</h2>
+		
+		<p>É necessário um servidor web compatível com java. O <b><i>TEARS</i></b>
+		foi desenvolvido utilizando a linguagem java, mas não é dependente de
+		nenhum serivdor web específico nem de banco de dados.</p>
+		
+		<h2>Como utilizar?</h2>
+		
+		<p>A configuração mais simples utiliza apenas um comando SQL em arquivos XML separados em uma
+		estrutura de diretórios do sistema operacional.</p>
+		
+        <div class="source"><pre>
+
+ &lt;Report Id=<i>&quot;CategoryList&quot;</i> Description=<i>&quot;Alphabetical List of Category&quot;</i>&gt;
+			
+	&lt;Recordset Id=<i>&quot;CategoryList&quot;</i> DefaultSortColumn=<i>&quot;CategoryName&quot;</i>
+		Description=<i>&quot;Simple SQL with explicit columns definitions. It also has a URL to another report&quot;</i>&gt;
+		
+		&lt;Sql&gt;&lt;![CDATA[
+			SELECT CategoryID, CategoryName, Description FROM Categories
+		]]&gt;&lt;/Sql&gt;
+		
+	&lt;/Recordset&gt;
+	
+ &lt;/Report&gt;
+ 
+</pre></div>
+		<p>Essa configuração irá gerar um relatório com todos os registros da
+		tabela <i>Categories</i> exibindo as colunas <i>CategoryID,
+		CategoryName, Description</i> .</p>
+		<p>Os dados estarão ordenados pela coluna <i>CategoryName</i>.</p>
+		
+		<h2>O que mais pode ser definido?</h2>
+		<p>Os relatórios deve ser definidos em arquivos xml que seguem o
+		seguinte padrão de nomeclatura: Reports_****.xml onde os asteriscos
+		podem ser subistituídos por qualquer valor válido para o sistema
+		operacional.</p>
+		
+		<p>Cada arquivo pode conter uma ou mais definições de relatório (
+		tag &lt;report&gt;). E cada relatório pode conter uma ou mais definições
+		de consultas (tag &lt;recordset&gt;).</p>
+		<p><b>Configurações dos relatórios:</b></p>
+		
+		
+		<table class="attributes">
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Id</td>
+				<td>identificador do relatório. Deve ser único para toda a
+				aplicação. Será utilizado para o relacionamento entre os relatórios
+				através da opção URL das colunas (ver documentação abaixo)</td>
+				<td>obrigat&oacute;rio</td>
+				<td>&nbsp;</td>
+				<td></td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Description</td>
+				<td>descrição do relatório. Será exibida abaixo do ID na listagem
+				de relatórios da pasta selecionada</td>
+				<td>opcional</td>
+				<td>&nbsp;</td>
+				<td></td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Roles</td>
+				<td>papeis dos usuários da aplicação que terão permissão de ver o
+				relatório</td>
+				<td>opcional</td>
+				<td>&nbsp;</td>
+				<td></td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">IsMainReport</td>
+				<td>caso o reltório somente possa ser acessado através de outro,
+				com a passagem de parêmetros, esse campo deve ser definido com false.
+				O relatório não será exibido na listagem de relatórios</td>
+				<td>opcional</td>
+				<td>falso</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">ExternalLink</td>
+				<td>&nbsp;</td>
+				<td>opcional</td>
+				<td></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">ConnectionId</td>
+				<td>identificador da conexão que será utilizada para a execução
+				da consulta. As conexões serão definidas para a aplicação (ver
+				docuentação especídifca)</td>
+				<td>opcional</td>
+				<td>utiliza o valor padr&atilde;o definido pela
+				aplica&ccedil;&atilde;o</td>
+				<td>&nbsp;</td>
+				
+			</tr>
+		</table>
+		<br />
+		<br />
+		<br />
+		<br />
+		<p>Configuração de filtros:</p>
+		<p>            Filtros pode ser configurados de várias maneiras:</p>
+		<p>1-&nbsp;&nbsp;&nbsp;&nbsp; filtro estático:</p>
+<div class="source"><pre>
+
+ &lt;ReportParameter Id=<i>&quot;status&quot;</i> Type=<i>&quot;RADIO&quot;</i>&gt;
+
+            &lt;ReportParameterMap Key=<i>&quot;1&quot;</i> MessageKey=<i>&quot;Ativas&quot;</i> /&gt;
+            &lt;ReportParameterMap Key=<i>&quot;0&quot;</i> MessageKey=<i>&quot;Não Ativas&quot;</i> /&gt;
+
+ &lt;/ReportParameter&gt;
+
+</pre></div>
+		
+		<p>            Antes de gerar um relatório, será exibido um
+		formulário com um campo de seleção do tipo <b><i>RADIO</i></b>, com duas
+		opções. A propriedade <i>Key</i> será o valor informado para a consulta
+		e <i>MessageKey</i> será exibida para o usuário.</p>
+		<p>2-&nbsp;&nbsp;&nbsp;&nbsp; filtro dinâmico:</p>
+<div class="source"><pre>
+
+ &lt;ReportParameter Id=<i>&quot;idShipper&quot;</i> Type=<i>&quot;QUERY&quot;</i>&gt;
+	&lt;ReportParameterSql&gt;
+		&lt;sql&gt;&lt;![CDATA[
+            SELECT ShipperID AS &quot;KEY&quot;, Company &quot;VALUE&quot; FROM Shippers
+		]]&gt;&lt;/sql&gt;
+	&lt;/ReportParameterSql&gt;
+ &lt;/ReportParameter&gt;
+ 
+</pre></div>
+		
+		<p>            Nesse caso a consulta cadastrada será usada como
+		fonte de dados e o campo de seleção exibido será do tipo <b><i>DROPDOWN</i></b>.</p>
+		<p>            Para filtrar a consulta com os valores selecionados
+		use o padrão: <i>#{Id do ReportParameter}</i></p> no comando SQL.
+		
+<div class="source"><pre>
+
+ SELECT OrderID, CustomerID, EmployeeID, OrderDate FROM Orders
+ WHERE ShipVia= <strong>#{idShipper}</strong>
+
+</pre></div>
+		
+		<p>            O sistema fará a substituição é retornará o resultado
+		filtrado.</p>
+		<p>            Outras propriedades de ReportParameter:</p>
+		<p>&nbsp;</p>
+		<table class="attributes">
+		
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Required</td>
+				<td>informa se o parâmetro é obrigatório ou não</td>
+				<td>n&atilde;o</td>
+				<td>sim</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">DefaultValue</td>
+				<td>caso o parâmetro não seja obrigatório, um valor padrão deverá
+				ser definido. Caso o parametro não seja informado o valor padrão será
+				utilizado no lugar</td>
+				<td>depende</td>
+				<td>se o valor do atributo <strong>Required</strong> for</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Description</td>
+				<td>descri&ccedil;&atilde;o do campo a ser exibido no formulário.</td>
+				<td>n&atilde;o</td>
+				<td>Caso n&atilde;o seja informado, o Id ser&aacute; utilizado.</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Type</td>
+				<td>tipo de exibição. Pode ser definido como: *******</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		
+		<p>Outras propriedades de ReportParameterSQL:</p>
+		
+		<table class="attributes">
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Key</td>
+				<td>nome do campo na consulta SQL que será utilizado como chave,
+		isto é, valor a ser passado para a consulta principal</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Value</td>
+			  <td>nome do campo na consulta SQL que será exibido para
+		seleção do usuário</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		
+		
+		<p><b>Configurações das consultas</b></p>
+		<p>Cada relatório pode ter uma ou mais consultas</p>
+		
+		<table class="attributes">
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Id</td>
+				<td>identificador da consulta. Deve ser único por relatório</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Description</td>
+			  <td>descrição da consulta. Será exibido no cabeçalho da
+		consulta no resultado</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">DefaultSortColunm</td>
+				<td>coluna do comando SQL que será utilizada para a ordenação
+		inicial</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">RowCountLabel</td>
+			  <td>se definido uma coluna com um contador de linhas
+		será exibida. A coluna será sempre a primeira.</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">PageSize</td>
+				<td>sobreescreve o tamanho da página definido para a
+		aplicação (ver Configuração da Aplicação).</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">AllowExport</td>
+			  <td>sobreescreve o valor padrão para informar se o
+		relatório poderá ser exportado ou não (ver Configuração da Aplicação).</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>		
+			<tr class="even">
+				<td class="atributeName">SQL</td>
+				<td>contem a consulta a ser executada</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>	
+		</table>
+		
+		<p><b>Configuração de propriedades das colunas:</b></p>
+		<p>            É possível redefinir as propriedades das colunas:</p>
+		
+<div class="source"><pre>
+
+ &lt;Column Id=<i>&quot;CategoryName&quot;</i> Description=<i>&quot;Name&quot;</i> /&gt;
+
+</pre></div>
+		
+		<p>&nbsp;</p>
+		<p>            A coluna CategoryName sera exibida como Name.</p>
+		
+		<table class="attributes">
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Type</td>
+				<td>redefine o tipo de dados dessa coluna, será usado para
+		ordenação, alinhamento</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Alignment</td>
+				<td>define o alinhamento da coluna</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Display</td>
+				<td>se o valor desse campo for igual a <b><i>false</i></b>,
+		a coluna não será exibida</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Consolidador</td>
+				<td>define um consolidador para a coluna. Veja
+		documentação abaixo</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">MappedDataNotFound</td>
+				<td>veja documentação abaixo</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">URL</td>
+				<td>define um link para outro relatório. Veja documentação
+		abaixo</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">ColumnMap</td>
+				<td>define valores que serão usado no lugar dos dados da
+		coluna. Veja documentação abaixo</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName"></td>
+				<td></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>	
+		</table>
+		
+		
+		<p>Detalhamento do atributos:</p>
+		<p>            ColumnMap</p>
+		<p>                        Define como os valores dos dados da
+		coluna serão exibidos:</p>
+		
+<div class="source"><pre>
+
+ &lt;Column Id=<i>&quot;ATIVO&quot;</i> Description=<i>&quot;Usuário Ativo&quot; </i>Type=<i>&quot;MAPPED&quot;</i>&gt;
+	&lt;ColumnMap Key=<i>&quot;1&quot;</i> MessageKey=<i>&quot;SIM&quot;</i> /&gt;
+	&lt;ColumnMap Key=<i>&quot;0&quot;</i> MessageKey=<i>&quot;NÃO&quot;</i> /&gt;
+ &lt;/Column&gt;
+
+</pre></div>
+		
+		<p>                        No exemplo acima a coluna <b><i>ATIVO</i></b>
+		do banco de dados será exibida como “Usuário Ativo” e os valores 1 e 0
+		serão substituídos por “SIM” e “NÃO”</p>
+		<p>            URL:</p>
+		<p>                        Define um link para um outro relatório
+		dentro ou fora da aplicação</p>
+<div class="source"><pre>
+ 
+ &lt;Column Id=<i>&quot;SupplierID&quot;</i>&gt;
+	&lt;Url ReportId=<i>&quot;Supplier&quot;</i> Description=<i>&quot;click here to see supplier details&quot;</i>&gt;
+		&lt;UrlParameterName=<i>&quot;supID&quot;</i>&gt;SupplierID&lt;/UrlParameter&gt;
+	&lt;/Url&gt;
+ &lt;/Column&gt;
+ 
+</pre></div>
+		<p>                        No exemplo acima a coluna <b><i>SupplierID</i></b>
+		terá um link para o relatório <b><i>Supplier</i></b> passando como
+		parêmetro o <b><i>supID</i></b> com o valor <b><i>SupplierID</i></b> da
+		linha em questão.</p>
+		<p>Todos os valores disponíveis na consulta SQL podem ser utilizados
+		na geração do link.</p>
+		<p>Outras propriedades de URL:</p>
+		
+		<table class="attributes">
+			<tr>
+				<th>Atributo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Requerido</th>
+				<th>Valor Padr&atilde;o</th>
+				<th>Tipo</th>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Description</td>
+				<td>informação a ser exibida ao passar o
+		mouse por cima do link (tooltip)</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">Path</td>
+				<td>define um link externo à aplicação</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="even">
+				<td class="atributeName">Complement</td>
+				<td>informação adicional a ser passada para o link
+		definido em Path</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr class="odd">
+				<td class="atributeName">NewWindow</td>
+				<td>define se o link externo, definido em Path será aberto
+		na mesma janela ou em uma janela externa</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		
+		</table>
+	</div>
+</div>
+<div class="clear">
+  <hr/>
+</div>
+<div id="footer">
+  <div class="xright">&#169; 1999-2010 Trigger Soluções</div>
+  <div class="clear">
+    <hr/>
+  </div>
+</div>
+</body>
+</html>

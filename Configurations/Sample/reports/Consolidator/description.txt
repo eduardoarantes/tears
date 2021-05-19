@@ -1,0 +1,2 @@
+A configuração de consolidadores é muito simples.<br/>
+Com duas tag's XML você terá uma nova tabela com informações adicionais.

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Connection.xsd"
+	Version="1.0.1">
+	<ConnectionList defaultConnection="jdbc/northwind_local">
+		<ReportConnection Id="jdbc/northwind_local" Type="jdbc">
+			<Param Name="username" Value="root" />
+			<Param Name="password" Value="sa" />
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="ValidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://localhost/tears_northwind?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+		</ReportConnection>
+		<ReportConnection Id="jdbc/northwind" Type="jdbc">
+			<Param Name="username" Value="tears" />
+			<Param Name="password" Value="tears*01" />
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="ValidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://mysql.triggersolucoes.com/tears_northwind?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+		</ReportConnection>
+	</ConnectionList>
+</Connections>

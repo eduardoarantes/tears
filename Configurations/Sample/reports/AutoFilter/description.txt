@@ -1,0 +1,3 @@
+Configura&ccedil;&atilde;o de autoFiltro permite a gera&ccedil;&atilde;o de uma lista com valores 
+da coluna para que seja filtrada como no excel.<br/>
+Para configurar um altoFiltro &eacute; somente necess&aacute;rio ativar o atributo AutoFiltro="True"

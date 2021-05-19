@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="ResultadoPorQuestionario" Description="Resultado por questionário" IsMainReport="true">
+		<ReportParameters>
+			<ReportParameter Id="quizId" Type="STRING"/>
+			<ReportParameter Id="grade" Type="STRING" DefaultValue="50"/>
+			<ReportParameter Id="name" Type="STRING" DefaultValue="%"/>
+		</ReportParameters>
+		<Recordset Id="ResultadoPorQuestionario" Description="Resultado por questionário">
+			<Sql><![CDATA[
+			SELECT concat( user.firstname,' ', IF(STRCMP(user.lastname,'-'),
+user.lastname,'')) as fullname, 
+	    		SUM(grades.grade) as grade,
+	    		SUM(quiz.sumgrades) as sumgrades
+          
+					FROM #{table.prefix}quiz_grades AS grades,
+						#{table.prefix}quiz AS quiz,
+						#{table.prefix}user AS user
+				
+					WHERE grades.quiz =#{quizId}
+						AND grades.quiz = quiz.id
+						AND user.id = grades.userid
+						AND round( (grades.grade / quiz.sumgrades)*100,1) < #{grade}
+            			AND (user.firstname LIKE #{name} or user.lastname LIKE #{name})  
+            GROUP BY 1;
+			]]></Sql>
+			<Chart Type="Pie">
+				<ChartColumn RefId="grade"/>
+			</Chart>
+		</Recordset>
+	</Report>
+</Reports>

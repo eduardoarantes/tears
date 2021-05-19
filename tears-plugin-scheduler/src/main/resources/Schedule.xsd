@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Schedule"
+	xmlns:tns="http://www.example.org/Schedule" elementFormDefault="qualified">
+
+    <element name="Schedules">
+	    <complexType>
+	    	<sequence>
+	    		<element name="MasterRule" maxOccurs="unbounded"
+	    			minOccurs="0">
+	    			<complexType>
+	    				<attribute name="Id" type="tns:stringWithoutSpace"
+	    					use="required">
+	    				</attribute>
+	    				<attribute name="Rule" type="string"
+	    					use="required">
+	    				</attribute>
+	    			</complexType>
+	    		</element>
+	    		<element name="Schedule" maxOccurs="unbounded"
+	    			minOccurs="1">
+	    			<complexType>
+	    				<sequence>
+	    					<element name="Param" type="tns:ParamType"
+	    						maxOccurs="unbounded" minOccurs="0">
+	    					</element>
+	    					<element name="ActionList" maxOccurs="1"
+	    						minOccurs="1">
+	    						<complexType>
+	    							<sequence>
+	    								<element name="Action"
+	    									maxOccurs="unbounded" minOccurs="1">
+	    									<complexType>
+	    										<sequence>
+	    											<element
+	    												name="Param" type="tns:ParamType" maxOccurs="unbounded"
+	    												minOccurs="0">
+	    											</element>
+	    										</sequence>
+	    										<attribute name="Type"
+	    											type="string" use="required">
+	    										</attribute>
+	    										<attribute name="Class"
+	    											type="string" use="optional">
+	    										</attribute>
+	    										<attribute
+	    											name="CompressFile" type="boolean" default="false"
+	    											use="optional">
+	    										</attribute>
+	    									</complexType>
+	    								</element>
+	    							</sequence>
+	    						</complexType>
+	    					</element>
+	    					<element name="ReportList" maxOccurs="1"
+	    						minOccurs="1">
+	    						<complexType>
+	    							<sequence>
+	    								<element name="ReportId"
+	    									maxOccurs="unbounded" minOccurs="1">
+	    									<complexType>
+	    										<attribute name="RefId"
+	    											type="string" use="required">
+	    										</attribute>
+	    									</complexType>
+	    								</element>
+	    							</sequence>
+	    						</complexType>
+	    					</element>
+	    				</sequence>
+	    				<attribute name="Id" type="tns:stringWithoutSpace"
+	    					use="required">
+	    				</attribute>
+	    				<attribute name="Description" type="string"
+	    					use="optional">
+	    				</attribute>
+	    				<attribute name="RuleId" type="string"
+	    					use="optional">
+	    				</attribute>
+	    				<attribute name="Rule" type="string"
+	    					use="optional">
+	    				</attribute>
+	    			</complexType>
+	    		</element>
+	    	</sequence>
+	    	<attribute name="Version" type="string"></attribute>
+	    </complexType>
+    </element>
+    <complexType name="ParamType">
+    	<attribute name="Name" type="string" use="required"></attribute>
+    	<attribute name="Value" type="string" use="required"></attribute>
+    	<attribute name="ApplyTo" type="string" use="optional"></attribute>
+    </complexType>
+
+    <simpleType name="stringWithoutSpace">
+    	<restriction base="string">
+	        <pattern value="\S*"/>
+		</restriction>
+    </simpleType>
+</schema>

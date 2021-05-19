@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd" Version="1.0.1">
+	<Report Id="Supplier" Description="Specific Supplier"
+		IsMainReport="false">
+		<ReportParameters>
+			<ReportParameter Id="supplierID" Required="true"
+				Description="Supplier Id" Type="INTEGER" />
+		</ReportParameters>
+		<Recordset Id="SupplierInfo" DefaultSortColumn="CompanyName" AllowExport="none"
+			Description="Simple SQL with parameter. It receives the 'supplierId' information from out side. Sub report, can not be accessed from main menu.">
+			<Sql><![CDATA[SELECT SupplierID, CompanyName, ContactName, ContactTitle
+, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage
+FROM Suppliers 
+WHERE SupplierID = #{supplierID}
+			]]></Sql>
+		</Recordset>
+	</Report>
+	<Report Id="MultiDrillDownOptions" 
+		Description="This report has more than one link per column" >
+		<Recordset Id="MultiDrillDownOptions" 
+			Description="This report has more than one link per column" AllowExport="csv,pdf" StyleClass="RecordSetClass">
+			<Sql><![CDATA[SELECT SupplierID, CompanyName, ContactName, ContactTitle
+, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage
+FROM Suppliers
+			]]></Sql>
+		<Columns>
+			<Column Id="SupplierID" StyleClass="ColumnClass">
+				<Url ReportId="Supplier"
+					Description="Click here to see Supplier Details">
+					<UrlParameter Name="supplierID">SupplierID</UrlParameter>
+				</Url>
+				<Url ReportId="SupplierProductList"
+					Description="Click here to see Supplier Products">
+					<UrlParameter Name="supplierID">SupplierID</UrlParameter>
+				</Url>
+			</Column>
+		</Columns>
+		</Recordset>
+	</Report>
+	<Report Id="SupplierProductList" Description="Alphabetical List of Products" IsMainReport="false">
+		<ReportParameters>
+			<ReportParameter Id="supplierID" Required="true"
+				Description="Supplier Id" Type="INTEGER" />
+		</ReportParameters>
+		<Recordset Id="SupplierProductList" DefaultSortColumn="ProductName"
+			Description="Simple report. Just list a result of a SQL statement"
+			PageSize="10" AllowExport="false" >
+			<Sql><![CDATA[SELECT * FROM Products WHERE SupplierID = #{supplierID}
+			]]></Sql>
+			
+		</Recordset>
+	</Report>	
+</Reports>

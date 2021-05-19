@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<http access-denied-page="/accessDenied.do" use-expressions="true"
+		auto-config="true">
+		<form-login login-page='/login.do' default-target-url='/index.do'
+			authentication-failure-url="/login.do?login_error=true" always-use-default-target="true"/>
+		<intercept-url pattern="/login.do" access="isAnonymous()" />
+		<intercept-url pattern="/reload.do" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/*.do" access="isAuthenticated()" />
+
+		<logout logout-success-url="/login.do" />
+	</http>
+	<authentication-manager>
+		<authentication-provider user-service-ref="customUserService">
+			<password-encoder ref="passwordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean id="passwordEncoder" class="com.trgs.util.OlaturistaPasswordEncoder"/>
+	
+	<beans:bean id="customUserService"
+		class="com.trgs.component.core.security.dao.TearsJdbcDaoImpl">
+		<beans:property name="dataSource" ref="jdbc_olaturista" />
+		<beans:property name="usersByUsernameQuery"
+			value="select U.EMAIL username, U.SENHA 'password', U.ATIVO enabled, EMAIL from USUARIOS U where EMAIL = ?" />
+		<beans:property name="authoritiesByUsernameQuery"
+			value="select U.EMAIL username, U.TIPO authority  from USUARIOS U where EMAIL = ?" />
+	</beans:bean>
+
+	<beans:bean id="jdbc_olaturista"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="url"
+			value="jdbc:mysql://mysql.triggersolucoes.com/olaturista_prod?autoreconnect=true" />
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="username" value="olaturista" />
+		<beans:property name="password" value="D3v_trigger" />
+	</beans:bean>
+
+	<beans:bean class="org.springframework.security.access.event.LoggerListener" />
+	<beans:bean
+		class="org.springframework.security.authentication.event.LoggerListener" />
+
+</beans:beans>

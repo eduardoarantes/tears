@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="ProductListByCategory" Description="This report is not available at the report list"
+		IsMainReport="false">
+		<ReportParameters>
+			<ReportParameter Id="categoryID" Required="true"
+				Description="Category Id" Type="INTEGER" />
+		</ReportParameters>
+		<Recordset Id="ProductListByCategory" DefaultSortColumn="ProductName"
+			Description="Click on the SupplierID to see supplier data">
+			<Sql><![CDATA[SELECT DISTINCT Products.*, Categories.CategoryName
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+WHERE Categories.CategoryID = #{categoryID}
+			]]></Sql>
+			<Columns>
+				<Column Id="ProductID" Type="INTEGER" StyleClass="COLORED_NUMBER"/>
+				<Column Id="SupplierID" Type="INTEGER" StyleClass="COLORED_NUMBER">
+					<Url ReportId="Supplier" OpenInLine="true" Description="click here to see supplier details">
+						<UrlParameter Name="supplierID">SupplierID</UrlParameter>
+					</Url>
+				</Column>
+				<Column Id="Discontinued" Description="MappedColumn" Type="TEXT" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

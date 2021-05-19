@@ -1,0 +1,1 @@
+Resources files that must be inside the META-INF direcoty, in jar file.

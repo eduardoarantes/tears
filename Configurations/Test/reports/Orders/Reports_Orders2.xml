@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report ConnectionId="jdbc/northwind" Id="OrdersByShipper2"
+		Description="Order by Shipper. Form to select shipper. The combo box is filled automatically. It also has a consolidator, counting the number of itens"
+		DownloadOnly="pdf">
+		<ReportParameters>
+			<ReportParameter Id="idShipper" Type="QUERY">
+				<ReportParameterSql>
+					<sql><![CDATA[
+						SELECT ShipperID AS "KEY" , CompanyName "VALUE" FROM Shippers 
+				]]></sql>
+				</ReportParameterSql>
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="OrdersByShipper2" DefaultSortColumn="OrderID"
+			Description="List of orders shipped by an specific shipper company">
+			<Sql><![CDATA[SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, 
+						ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, 
+						ShipRegion, ShipPostalCode, ShipCountry FROM Orders 
+						WHERE ShipVia= #{idShipper}
+			]]></Sql>
+			<Columns>
+				<Column Consolidator="count" Id="OrderID" Type="TEXT"
+					Description="Number of orders" />
+				<Column Id="Freight" Type="DOUBLE" Format="#.##" />
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

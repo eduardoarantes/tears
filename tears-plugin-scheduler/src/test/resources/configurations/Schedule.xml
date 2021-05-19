@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Schedule.xsd"
+	Version="1.0">
+	<Schedule Id="1" Description="teste" Rule="00 59 17 * * ?">
+		<ActionList>
+			<Action Type="FILESYSTEM">
+				<Param Name="filename" Value="test.txt" />
+				<Param Name="filepath" Value="C:/testes/" />
+			</Action>
+		</ActionList>
+		<ReportList>
+			<ReportId RefId="SimpleReportWithPagination" />
+		</ReportList>
+	</Schedule>
+</Schedules>

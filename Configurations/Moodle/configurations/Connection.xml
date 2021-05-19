@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Connection.xsd" Version="1.0">
+	<ConnectionList defaultConnection="jdbc/northwind">
+		<ReportConnection Id="jdbc/northwind" Username="multicurso"
+			Password="D3v_trigger" Type="jdbc">
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="ValidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://mysql.triggersolucoes.com/moodle_mc?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+			<Param Name="table.prefix" Value="prod_" ApplyTo="sql.query.replace"/>
+		</ReportConnection>
+	</ConnectionList>
+</Connections>

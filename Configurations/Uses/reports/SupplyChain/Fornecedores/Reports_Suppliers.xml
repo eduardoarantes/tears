@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="Fornecedores" Title="Lista de Fornecedores"
+		Description="Lista dos fornecedores cadastrados no sistema">
+		<Recordset Id="SupplierInfo" Title="Lista de Fornecedores"
+			Description="Lista dos fornecedores cadastrados no sistema">
+			<Sql><![CDATA[SELECT SupplierID, CompanyName, ContactName, ContactTitle
+, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage
+FROM Suppliers 
+			]]></Sql>
+			<Columns>
+				<Column Id="SupplierID">
+					<Url ReportId="ListaProdutosFornecedores"
+						Description="Clique aqui para ver a lista de produtos desse fornecedor">
+						<UrlParameter Name="supplierID">SupplierID</UrlParameter>
+					</Url>
+				</Column>
+			</Columns>
+		</Recordset>
+	</Report>
+	<Report Id="ListaProdutosFornecedores" Title="Lista de Produtos"
+		Description="Lista alfabética de produtos do fornecedor">
+		<ReportParameters>
+			<ReportParameter Id="supplierID" Type="QUERY">
+				<ReportParameterSql>
+					<sql><![CDATA[
+SELECT SupplierID "KEY", CompanyName "VALUE"
+					FROM Suppliers order by CompanyName
+				]]></sql>
+				</ReportParameterSql>
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="ListaProdutosFornecedores" Title="Lista de Produtos"
+			Description="Lista alfabética de produtos do fornecedor" PageSize="10">
+			<Sql><![CDATA[SELECT * FROM Products WHERE SupplierID = #{supplierID}
+			]]></Sql>
+
+		</Recordset>
+	</Report>
+</Reports>

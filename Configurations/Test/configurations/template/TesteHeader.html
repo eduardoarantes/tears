@@ -1,0 +1,149 @@
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4 portrait;
+				margin-top: 0.65in;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 0.25in;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: element(header); 
+					background-color: #ffffff;
+					width: 100%;
+				}
+				@bottom-center {
+					content: element(footer);
+					width: 100%;
+				}
+			}
+			div.recordset_container{
+				text-align: center;
+				min-width: 10px;
+			}
+			
+			table{
+			 	-fs-table-paginate:paginate;
+			}
+			table.recordset{
+				border: solid 1px #000;
+				display: inline-table;
+				margin: auto;
+			}
+			table.recordset thead th{
+				text-align: center;
+				font-size: 8pt;
+				background-color: #bbb;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			table.recordset tr.rowtype0{
+				background-color: #fff;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr.rowtype1{
+				background-color: #e0e0e0;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr td{
+				border: 0px;
+				padding: 2px;
+				margin: 0px;
+				font-size: 6pt;	
+			}
+			table.header{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.header tr td.label{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: right;
+			}
+			table.header tr td.value{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: left;
+			}
+			.TEXT{
+				text-align:left;
+			}
+			.DOUBLE, .INTEGER{
+				text-align:right;
+			}
+			#content{
+				text-align: center;
+			}
+			div.header {
+				position: running(header);
+				background-color: #ffffff;
+				border-bottom: solid 2px #c61a1f;
+				margin-top: 10px;
+				font-size: 7pt;
+				margin-left: 10px;
+				margin-right: 10px;
+				height:100%;
+			}
+			div.footer {
+				position: running(footer);
+				background-color: #ffffff;
+				border-top: solid 2px #c61a1f;
+				padding-bottom: 10px;
+				color: #bbb;
+				font-size: 7pt;
+				margin-left: 10px;
+				margin-right: 10px
+			}
+			#pagenumber:before {
+				content: counter(page); 
+			}
+			
+			#pagecount:before {
+				content: counter(pages);  
+			}
+			span.description{
+				font-size: 10px;
+			}
+			.surroundTable{
+				width:100%;
+			}
+			.surroundTable td.left,.surroundTable td.right{
+				width:50%;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="header" >
+		<table width="100%">
+			<tr><td align="left" width="25%"><img src="$TearsTools.getTemplateImage('images/logoTrigger.jpg')" width="90" height="50"/></td><td width="50%"></td><td width="25%" align="right" valign="bottom">$dateTool.full_date</td></tr>
+		</table>
+	</div>
+	<div id="content">
+	
+	<span class="title">${RT.title}</span><br/>
+	<span class="description">${RT.description}</span>
+	<br/><br/><br/>
+	${RT.getRecordSet(0)}<br/>
+	<span class="description">${RT.getRecordSet(0).description}</span>
+
+	
+	</div>
+	<div class="footer"><span style="float:left">PRODUZIDO POR TRIGGER SOLUÇÕES | www.trgs.com.br</span><span style="float:right">Página <span id="pagenumber"/> de <span id="pagecount"/></span> </div>
+
+	</body>
+</html>

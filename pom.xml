@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.trgs</groupId>
+	<artifactId>tears-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>0.2-MAVEN</version>
+	<name>Trigger Easy Application Reporting Parent</name>
+	<url>http://tears.trgs.com.br</url>
+
+	<modules>
+		<module>tears-castor</module>
+		<module>tears-webapp</module>
+		<module>tears-plugin-dao-rss</module>
+		<module>tears-plugin-dao-csv</module>
+		<module>tears-plugin-dao-excel</module>
+		<module>tears-plugin-scheduler</module>
+		<module>tears-xml-control</module>
+		<module>tears-core</module>
+		<module>tears-api</module>
+	</modules>
+
+	<!-- Configura o enconding padrão para UTF-8 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<!-- Configuração do build -->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<!--
+						Setup the compiler plugin to handle our classes using JDK 1.6 and
+						compiling them as JDK 1.6
+					-->
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

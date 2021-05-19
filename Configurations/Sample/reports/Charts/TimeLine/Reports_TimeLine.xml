@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd" Version="1.0.1">
+	<Report Id="DynamicTimeLine" Title="Dynamic Time Line"
+		Description="Order by Day.">
+		<Recordset Id="DynamicTimeLine" DefaultSortColumn="Chart features: dynamic, zoom"
+			Description="List #orders by day" PageSize="10">
+			<Sql><![CDATA[select OrderDate, sum(Freight) SumFreight, avg(Freight) AvgFreight
+from Orders 
+where OrderDate >= '1996-07-01' and OrderDate <= '1996-11-01' 
+group by OrderDate
+			]]></Sql>
+			<Columns>
+				<Column Id="OrderDate" Type="DATE"/>
+				<Column Id="SumFreight" Type="DOUBLE"/>
+			</Columns>
+			<Chart Type="AnnotatedTimeLine">
+				<ChartColumn RefId="OrderDate" />
+				<ChartColumn RefId="SumFreight" />
+				<ChartColumn RefId="AvgFreight" />
+				<Param Name="displayAnnotations" Value="true"/>
+				<Param Name="fill" Value="30"/>
+			</Chart>
+		</Recordset>
+	</Report>
+	
+</Reports>

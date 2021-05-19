@@ -1,0 +1,11 @@
+#macro( nullHandle $value)
+  #if( $value )
+      $value
+  #end
+#end
+<div class="container_header container_header_$recordsetCount">
+<table class="header header_$recordset.id header_$recordsetCount">
+	<tr><td class="label_id">Id: </td><td class="value value_id">#nullHandle($recordset.id)</td></tr>
+	<tr><td class="label_description">Description: </td><td class="value value_description">#nullHandle($recordset.description)</td></tr>
+</table>
+</div>

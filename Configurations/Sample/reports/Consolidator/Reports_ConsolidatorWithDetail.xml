@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="Report.xsd"
+	Version="1.0">
+	<Report Id="ConsolidatorWithDetails" Title="With Details" Description="Display the products per category">
+		<Recordset Id="ProductListGroupBy" DefaultSortColumn="ProductName"
+			Description="Simple report. Just list a result of a SQL statement. Test GroupBy"
+			PageSize="10" AllowExport="false" Display="false">
+			<Sql><![CDATA[
+			SELECT DISTINCT Products.ProductID, Products.ProductName, Products.SupplierID, 
+			Products.CategoryID, Products.QuantityPerUnit, 
+			Products.UnitPrice, Products.UnitsInStock,  Products.Discontinued,
+				Categories.CategoryName
+				FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+			]]></Sql>
+			<Columns >
+				<Column Id="CategoryName" Display="false"/>
+				<Column Id="Discontinued" Display="false"/>
+				<Column Id="Discontinued" Type="MAPPED" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+			</Columns>
+			<GroupBy Id="ProductsByCategory" Description="Number of Product by Category" WithDetails="true">
+				<GroupByColumn Id="CategoryName" RefId="CategoryName" />
+				<GroupByColumn Id="Discontinued" RefId="Discontinued" />
+				<CalculatedColumn Id="Products" RefId="ProductID"
+					Type="INTEGER" Consolidator="count" Description="#Products" />
+				<CalculatedColumn Id="UnitsInStock" RefId="UnitsInStock" Type="INTEGER"
+					Consolidator="sum" Description="#UnitsInStock" />
+				<CalculatedColumn Id="AverageUnitsInStock" RefId="UnitsInStock"
+					Type="DOUBLE" Consolidator="average" Description="#AverageUnitsInStock"
+					Format="#.##" />
+			</GroupBy>
+		</Recordset>
+	</Report>
+</Reports>

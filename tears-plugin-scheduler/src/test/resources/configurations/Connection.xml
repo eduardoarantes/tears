@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="./tears-castor/src/main/resources/Connection.xsd" Version="1.0">
+	<ConnectionList defaultConnection="jdbc/northwind">
+		<ReportConnection Id="jdbc/northwind" Username="tears"
+			Password="tears*01" Type="jdbc">
+			<Param Name="DriverClassName" Value="com.mysql.jdbc.Driver" />
+			<Param Name="DalidationQuery" Value="select 1" />
+			<Param Name="Url"
+				Value="jdbc:mysql://mysql.triggersolucoes.com/tears_northwind?autoreconnect=true" />
+			<Param Name="MaxWait" Value="20000" />
+		</ReportConnection>
+	</ConnectionList>
+</Connections>

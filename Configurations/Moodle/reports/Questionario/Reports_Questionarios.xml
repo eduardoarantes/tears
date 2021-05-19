@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="ListadeQuestionarios" Description="Lista de questionários por curso">
+		<ReportParameters>
+			<ReportParameter Id="course" Type="QUERY">
+				<ReportParameterSql>
+					<sql>SELECT id  AS "KEY", shortname as "VALUE" FROM #{table.prefix}course order by shortname</sql>
+				</ReportParameterSql>
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="ListadeQuestionarios" Description="Lista de questionários por curso">
+			<Sql><![CDATA[
+			SELECT distinct quiz.id, quiz.name
+            FROM #{table.prefix}quiz as quiz, 
+            	#{table.prefix}quiz_grades AS grades
+            WHERE
+            quiz.course = #{course} AND 
+            grades.quiz = quiz.id
+            ORDER BY quiz.name
+			]]></Sql>
+			<Columns>
+				<Column Id="id">
+					<Url ReportId="ResultadoPorQuestionario">
+						<UrlParameter Name="quizId">id</UrlParameter>
+					</Url>
+				</Column>
+				<Column Id="name" Description="Nome" />
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

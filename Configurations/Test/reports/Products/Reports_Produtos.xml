@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="ProductList" Description="Alphabetical List of Products">
+		<Recordset Id="ProductList" DefaultSortColumn="ProductName"
+			Description="Simple report. Just list a result of a SQL statement"
+			PageSize="10" AllowExport="false" >
+			<Sql><![CDATA[SELECT DISTINCT Products.*, Categories.CategoryName
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+			]]></Sql>
+			<Columns>
+				<Column Id="Discontinued" Type="MAPPED" MappedDataNotFound="Undefined">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+			</Columns>
+			<GroupBy Id="ProductsByCategory" Description="Number of Product by Category" WithDetails="False">
+				<GroupByColumn Id="CategoryName" RefId="CategoryName" />
+				<CalculatedColumn Id="#Products" RefId="ProductID"
+					Type="INTEGER" Consolidator="count" Description="#Products" />
+				<CalculatedColumn RefId="UnitsInStock" Type="INTEGER"
+					Consolidator="sum" Description="#UnitsInStock"/>
+				<CalculatedColumn Id="#AverageUnitsInStock" RefId="UnitsInStock"
+					Type="DOUBLE" Consolidator="average" Description="#AverageUnitsInStock"
+					Format="#.##" />
+				<Chart Title="Chart Title" Description="Descrição do Relatório">
+					<ChartColumn RefId="CategoryName" />
+					<ChartColumn RefId="#Products" />
+					<ChartColumn RefId="#AverageUnitsInStock" />
+				</Chart>
+			</GroupBy>
+		</Recordset>
+	</Report>
+</Reports>

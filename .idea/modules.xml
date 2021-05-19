@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tears-api/tears-api.iml" filepath="$PROJECT_DIR$/tears-api/tears-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-castor/tears-castor.iml" filepath="$PROJECT_DIR$/tears-castor/tears-castor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-core/tears-core.iml" filepath="$PROJECT_DIR$/tears-core/tears-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-parent.iml" filepath="$PROJECT_DIR$/tears-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-plugin-dao-csv/tears-plugin-dao-csv.iml" filepath="$PROJECT_DIR$/tears-plugin-dao-csv/tears-plugin-dao-csv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-plugin-dao-excel/tears-plugin-dao-excel.iml" filepath="$PROJECT_DIR$/tears-plugin-dao-excel/tears-plugin-dao-excel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-plugin-dao-rss/tears-plugin-dao-rss.iml" filepath="$PROJECT_DIR$/tears-plugin-dao-rss/tears-plugin-dao-rss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-plugin-scheduler/tears-plugin-scheduler.iml" filepath="$PROJECT_DIR$/tears-plugin-scheduler/tears-plugin-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-webapp/tears-webapp.iml" filepath="$PROJECT_DIR$/tears-webapp/tears-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tears-xml-control/tears-xml-control.iml" filepath="$PROJECT_DIR$/tears-xml-control/tears-xml-control.iml" />
+    </modules>
+  </component>
+</project>

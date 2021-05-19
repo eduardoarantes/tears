@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<style type="text/css" media="print, screen">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4 landscape;
+				margin-top: 0.65in;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 0.25in;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: "Produzido por Trigger Soluções Ltda.";
+					background-image: url("template://images/head.gif");
+					background-repeat: no-repeat;
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+				@bottom-center {
+					content: "Page " counter(page) " of " counter(pages);
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+			}
+			
+			table.recordset{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.recordset th{
+				text-align: center;
+				font-size: 8pt;
+				background-color: #bbb;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			table.recordset tr.rowtype0{
+				background-color: #fdd;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr.rowtype1{
+				background-color: #fff;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr td{
+				border: 0px;
+				padding: 2px;
+				margin: 0px;
+				font-size: 6pt;	
+			}
+			table.header{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.header tr td.label{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: right;
+			}
+			table.header tr td.value{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: left;
+			}
+			#content{
+				text-align: center;
+			}
+			.surroundTable{
+				width:100%;
+			}
+			.surroundTable td.left,.surroundTable td.right{
+				width:50%;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="content">
+		${RT}
+	</div>
+	</body>
+</html>

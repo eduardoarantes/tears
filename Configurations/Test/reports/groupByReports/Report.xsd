@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Esse documento faz parte do sistema de relatórios e
+			não pode ser utilizado para outros fins.
+			Propriedade de Trigger
+			Soluções</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Reports" type="ReportsType">
+		<xs:annotation>
+			<xs:documentation>Trigger Easy Application Report
+				Sistema de geração
+				de automática de relatórios</xs:documentation>
+		</xs:annotation>
+		<xs:keyref name="reportConnectionIdRefKey" refer="connectionIdKey">
+			<xs:selector xpath="Report" />
+			<xs:field xpath="@ConnectionId" />
+		</xs:keyref>
+		<xs:keyref name="defaultConnectionKey" refer="connectionIdKey">
+			<xs:selector xpath="Connections" />
+			<xs:field xpath="@defaultConnection" />
+		</xs:keyref>
+		<xs:key name="connectionIdKey">
+			<xs:selector xpath=".//Connections/Connection" />
+			<xs:field xpath="@Id" />
+		</xs:key>
+		<xs:key name="reportIdKey">
+			<xs:selector xpath="Report" />
+			<xs:field xpath="@Id" />
+		</xs:key>
+	</xs:element>
+	<xs:complexType name="RecordsetParametersType">
+		<xs:sequence>
+			<xs:element name="RSQueryParameters" type="QueryParametersType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryParametersType">
+		<xs:sequence>
+			<xs:element name="QueryParameter" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="QueryParameterType" />
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryParameterType">
+		<xs:attribute name="Id" type="xs:string" use="required" />
+		<xs:attribute name="DefaultValue" type="xs:string" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="ReportParametersType">
+		<xs:sequence>
+			<xs:element name="ReportParameter" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ReportParameterType">
+							<xs:sequence>
+								<xs:element name="ReportParameterMap" minOccurs="0"
+									maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="Key" type="xs:string" use="required" />
+										<xs:attribute name="MessageKey" type="xs:string"
+											use="required" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="ReportParameterSql" type="ReportParameterSqlType"
+									maxOccurs="1" minOccurs="0">
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportParameterType">
+		<xs:attribute name="Required" type="xs:string" use="optional"
+			default="true" />
+		<xs:attribute name="Id" type="xs:string" use="required" />
+		<xs:attribute name="Type" type="xs:string" />
+		<xs:attribute name="Description" type="xs:string" />
+		<xs:attribute name="DefaultValue" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="RecordsetType">
+		<xs:sequence>
+			<xs:element name="Sql" type="xs:string" maxOccurs="1"
+				minOccurs="0" />
+			<xs:element name="Config" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Content"
+							type="xs:string" maxOccurs="1" minOccurs="0">
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Name" type="xs:string"
+						use="required" />
+					<xs:attribute name="Value" type="xs:string"
+						use="optional" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Columns" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Column" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ColumnMap" minOccurs="0"
+										maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="Key" type="xs:string" use="required" />
+											<xs:attribute name="MessageKey" type="xs:string"
+												use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Url" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="UrlParameter" minOccurs="0"
+													maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string">
+																<xs:attribute name="Name" type="xs:string"
+																	use="required" />
+															</xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="ReportId" type="xs:string" />
+											<xs:attribute name="Description" type="xs:string" />
+											<xs:attribute name="Path" type="xs:string" />
+											<xs:attribute name="Complement" type="xs:string" />
+											<xs:attribute name="NewWindow" type="xs:string"
+												default="false" />
+											<xs:attribute name="OpenInLine" type="xs:boolean"
+												use="optional" default="false">
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="Id" type="xs:string" use="required" />
+								<xs:attribute name="Description" type="xs:string"
+									use="optional" />
+								<xs:attribute name="Type" type="xs:string" default="TEXT" />
+								<xs:attribute name="Consolidator" type="xs:string"
+									use="optional" />
+								<xs:attribute name="MappedDataNotFound" type="xs:string"
+									use="optional" />
+								<xs:attribute name="Display" type="xs:boolean" use="optional"
+									default="true">
+								</xs:attribute>
+								<xs:attribute name="Format" type="xs:string" use="optional">
+									<xs:annotation>
+										<xs:documentation>
+											allows to format data
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="StyleClass" type="xs:string">
+								</xs:attribute>
+								<xs:attribute name="AllowFilter" type="xs:boolean"
+									default="false">
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GroupBy" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="GroupByColumn"
+							maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="RefId"
+											type="xs:string" use="required">
+										</xs:attribute>
+										<xs:attribute name="Id"
+											type="xs:string" use="optional">
+										</xs:attribute>
+										<xs:attribute
+											name="Consolidator" type="xs:string" use="optional" />
+										<xs:attribute name="Description"
+											type="xs:string" use="optional">
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="CalculatedColumn"
+							minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="RefId"
+											type="xs:string" use="required">
+										</xs:attribute>
+										<xs:attribute name="Id"
+											type="xs:string" use="optional">
+										</xs:attribute>
+										<xs:attribute name="Type"
+											type="xs:string" use="required" />
+										<xs:attribute
+											name="Consolidator" type="xs:string" use="optional" />
+										<xs:attribute name="Description"
+											type="xs:string" use="optional">
+										</xs:attribute>
+										<xs:attribute name="Format"
+											type="xs:string">
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Chart" type="ChartType"
+							maxOccurs="1" minOccurs="0">
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Description" type="xs:string"
+						use="optional" />
+					<xs:attribute name="Id" type="xs:string"
+						use="required" />
+					<xs:attribute name="Display" type="xs:boolean"
+						use="optional" default="true">
+					</xs:attribute>
+					<xs:attribute name="WithDetails"
+						type="xs:boolean">
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Chart" maxOccurs="1" minOccurs="0"
+				type="ChartType">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Id" type="xs:string" use="required" />
+		<xs:attribute name="Description" type="xs:string" />
+		<xs:attribute name="DefaultSortColumn" type="xs:string"
+			use="optional" />
+		<xs:attribute name="RowCountLabel" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					se esse atributo for especificado será criada uma
+					coluna com o contador de registros
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PageSize" type="xs:int" use="optional"></xs:attribute>
+		<xs:attribute name="AllowExport" type="xs:string" use="optional"
+			default="">
+		</xs:attribute>
+		<xs:attribute name="Display" type="xs:boolean" use="optional"
+			default="true">
+		</xs:attribute>
+		<xs:attribute name="StyleClass" type="xs:string"></xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReportsType">
+		<xs:sequence>
+			<xs:element name="Report" type="ReportType"
+				maxOccurs="unbounded">
+				<xs:key name="reportParameterIdKey">
+					<xs:selector
+						xpath="ReportParameters/ReportParameter" />
+					<xs:field xpath="@Name" />
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Version" type="xs:string"></xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReportType">
+		<xs:sequence>
+			<xs:element name="ReportParameters" type="ReportParametersType"
+				minOccurs="0" />
+			<xs:element name="Recordset" type="RecordsetType"
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:keyref name="ReportParameterKeyRef" refer="ReportParameterKey">
+					<xs:selector xpath=".//Reports/Report/Recordset/QueryParameters/*" />
+					<xs:field xpath="@Name" />
+				</xs:keyref>
+				<xs:key name="ReportParameterKey">
+					<xs:selector xpath=".//Reports/Report/ReportParameters/ReportParameter" />
+					<xs:field xpath="@Name" />
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Description" type="xs:string" use="optional" />
+		<xs:attribute name="Id" type="xs:string" use="required" />
+		<xs:attribute name="Roles" type="xs:string" use="optional" />
+		<xs:attribute name="IsMainReport" type="xs:string" use="optional"
+			default="true">
+			<xs:annotation>
+				<xs:documentation>
+					used to hide detailed reports, called from other
+					reports
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ExternalLink" type="xs:string" use="optional"
+			default="" />
+		<xs:attribute name="ConnectionId" type="xs:string" />
+		<xs:attribute name="DownloadOnly" type="xs:string"
+			default="none" use="optional">
+		</xs:attribute>
+		<xs:attribute name="TemplateName" type="xs:string"
+			default="Default.html" use="optional"></xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReportParameterSqlType">
+		<xs:annotation>
+			<xs:documentation>
+				Elemento fornecido para disponibilizar uma lista de valores para
+				serem passados como parametro para a query do RecordSet em questão.
+				Para configurá-lo corretamente será necessário informar os valores
+				dos atributos key e value. Caso não informe algum dos valores,
+				o
+				mesmo deve ser substituidopor alias na query dentro do
+				elemento-filho sql. Exemplos:
+				<ReportParameterSql>
+					<sql>
+		<![CDATA[
+			select A as KEY, B as VALUE from c
+		]]>
+					</sql>
+				</ReportParameterSql>
+				----------------------------------------------------------
+				<ReportParameterSql key="A">
+					<sql>
+		<![CDATA[
+			select A, B as VALUE from c
+		]]>
+					</sql>
+				</ReportParameterSql>
+				----------------------------------------------------------
+				<ReportParameterSql value="B">
+					<sql>
+		<![CDATA[
+			select A as KEY, B from c
+		]]>
+					</sql>
+				</ReportParameterSql>
+				----------------------------------------------------------
+				<ReportParameterSql key="A" value="B">
+					<sql>
+		<![CDATA[
+			select A, B from c
+		]]>
+					</sql>
+				</ReportParameterSql>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sql" type="xs:string">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string"></xs:attribute>
+		<xs:attribute name="value" type="xs:string"></xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ParamType">		<xs:attribute name="Name" type="xs:string" use="required" />
+		<xs:attribute name="Value" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:complexType name="ChartType">
+		<xs:sequence>
+			<xs:element name="ChartColumn" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RefId" type="xs:string" use="required" />
+					<xs:attribute name="Description" type="xs:string" use="optional" />
+					<xs:attribute name="Type" type="xs:string" default="TEXT" />
+					<xs:attribute name="Format" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>
+								allows to format data
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Param" type="ParamType" minOccurs="0"
+				maxOccurs="unbounded">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string" use="optional">
+		</xs:attribute>
+		<xs:attribute name="Title" type="xs:string"></xs:attribute>
+		<xs:attribute name="Description" type="xs:string"></xs:attribute>
+		<xs:attribute name="Height" type="xs:int"></xs:attribute>
+		<xs:attribute name="Width" type="xs:int"></xs:attribute>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="$PROJECT_DIR$/tears-api/src/main/java/br/com/trgs/definition/chart/IPDFDraw.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tears-core/src/main/java/com/trgs/reports/charts/google/GoogleChartProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tears-core/src/main/java/com/trgs/reports/charts/jfreechart/Base64Encoder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tears-core/src/main/java/com/trgs/reports/charts/jfreechart/JFreeChartDraw.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tears-core/src/main/java/com/trgs/util/export/pdf/TearsChartReplacedElement.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tears-xml-control/src/main/java/com/trgs/util/xmlcontrol/XmlVersionConverter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

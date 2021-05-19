@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="Columncalculate" Description="Alphabetical List of Category" >
+		<Recordset Id="Columncalculate" DefaultSortColumn="CategoryName"
+			Description="Simple SQL with explicit columns definitions. It also has a URL to another report">
+			<Sql><![CDATA[SELECT CategoryID, CategoryName, Description
+FROM Categories
+			]]></Sql>
+			<Columns>
+				<Column Id="CategoryID" Description="Id" Type="DOUBLE" Format="##.00">
+					<Url ReportId="ProductListByCategory"
+						Description="Click here to see Product list for this category">
+						<UrlParameter Name="categoryID">CategoryID</UrlParameter>
+					</Url>
+				</Column>
+				<Column Id="DOUBLE_ID" Expression="(CategoryID * CategoryID)">
+				</Column>
+				<Column Id="VALUE_TEST" Value="TEST">
+				</Column>
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

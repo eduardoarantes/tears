@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd"
+	Version="1.0">
+	<Report Id="RedirectsDia" Description="Redirects por dia">
+		<ReportParameters>
+			<ReportParameter Id="StartDate" Description="Data de início - Use 1996-07-01"
+				Type="DATE" />
+			<ReportParameter Id="EndDate" Description="Data final - Use 1996-07-31 "
+				Type="DATE" />
+		</ReportParameters>
+		<Recordset Id="RedirectsDia" Description="Redirects por dia por Provider" >
+			<Sql><![CDATA[select data, count(*) Total, s.nome
+from redirect r, site s
+where r.siteid = s.id and data >= #{StartDate} and data <= #{EndDate}
+group by data, siteid, s.nome
+]]></Sql>
+		</Recordset>
+	</Report>
+
+
+<Report Id="Redirects" Description="Redirects por dia Consolidado">
+		<ReportParameters>
+			<ReportParameter Id="StartDate" Description="Data de início - Use 1996-07-01"
+				Type="DATE" />
+			<ReportParameter Id="EndDate" Description="Data final - Use 1996-07-31 "
+				Type="DATE" />
+		</ReportParameters>		
+		<Recordset Id="Redirects" Description="Redirects por dia Consolidado" Display="false">
+
+			<Sql><![CDATA[select data, count(*) Total
+from redirect r
+where data >= #{StartDate} and data <= #{EndDate}
+group by data
+]]></Sql>
+			<Columns>
+				<Column Id="data" Description="Data" Type="DATE" />
+				<Column Id="Count" Type="TEXT" Value="Detalhes"/>
+			</Columns>
+			<Chart Type="MotionChart">
+				<ChartColumn RefId="Count" />
+				<ChartColumn RefId="data" />
+				<ChartColumn RefId="Total" />
+			</Chart>
+
+	
+		</Recordset>
+	</Report>
+
+</Reports>

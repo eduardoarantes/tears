@@ -1,0 +1,4 @@
+A impressão/geração de pdf é um recurso muito poderoso no TEARS.<br/>
+O TEARS aceita, além dos templates padrões, configurações individuais por relatório.<br/>
+Os templates são arquivos HTML onde os dados são inseridos.<br/>
+Toda a flexibilidade do formato HTML está disponível na geração dos relatórios.

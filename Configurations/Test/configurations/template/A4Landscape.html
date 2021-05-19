@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4 landscape;
+				margin-top: 1.5cm;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 1.5cm;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: "Produzido por Trigger Soluções Ltda.";
+					background-image: url("http://localhost:8080/tears/images/head.gif");
+					background-repeat: no-repeat;
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+				@bottom-center {
+					content: "Page " counter(page) " of " counter(pages);
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+			}
+			table{
+			 	-fs-table-paginate:paginate;
+			 }
+			table.recordset{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.recordset th{
+				text-align: center;
+				font-size: 8pt;
+				background-color: #bbb;
+			}
+			table.recordset tr.rowtype0{
+				background-color: #fdd;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr.rowtype1{
+				background-color: #fff;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.recordset tr td{
+				border: 0px;
+				padding: 2px;
+				margin: 0px;
+				font-size: 6pt;	
+			}
+			table.recordset thead{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.recordset thead tr td.label{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: right;
+			}
+			table.recordset thead tr td.value{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: left;
+			}
+			#content{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="content">
+		$fullData
+	</div>
+	</body>
+</html>

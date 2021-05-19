@@ -1,0 +1,50 @@
+#macro( nullHandle $value)
+  #if( $value )
+      $value
+  #end
+#end
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4;
+				margin-top: 0.65in;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 0.25in;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: "Produzido por Trigger Solucoes Ltda.";
+					background-image: url("http://localhost:8080/tears/images/head.gif");
+					background-repeat: no-repeat;
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+				@bottom-center {
+					content: "Page " counter(page) " of " counter(pages);
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+	<div id="content">
+	<table>
+		<tr><td> QWERTWQERGwegweg wefvsf sd gowj gpwog peroi perweproijewrpoij eroiverivojeriovervoewrvpiownerviuwernv 
+		q regjweroig jwperoivj wepgiojwer pgijwrggpoirrt </td>
+		<td><img alt="alt" src="TEARS_REPLACED_ELEMENT_test" style="width:300px;height:300px;"/></td>
+		</tr>
+	</table>
+	
+	
+	</div>
+	</body>
+</html>

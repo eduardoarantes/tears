@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="TenMostExpensiveProducts" Description="Ten Most Expensive Products">
+		<Recordset Id="TenMostExpensiveProducts" Description="Ten Most Expensive Products">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,10			]]></Sql>
+		</Recordset>
+	</Report>
+	<Report Id="PDFSample" Description="Relatório que exibe a lista dos 10 produtos mais caros"  Title="Ten Most Expensive Products" TemplateName="PDFSample.html">
+		<Recordset Id="TenMostExpensiveProductsDefault" Description="Descrição da tabela" >
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart Description="Gráfico da tabela acima"/>
+		</Recordset>
+	</Report>
+	<Report Id="ChartSample" Description="Ten Most Expensive Products" TemplateName="TesteCss3.html">
+		<Recordset Id="TenMostExpensiveProductsDefault" Description="Ten Most Expensive Products" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart/>
+		</Recordset>
+		<Recordset Id="TenMostExpensiveProductsPie" Description="Ten Most Expensive Products" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart Type="pie"/>
+		</Recordset>
+		<Recordset Id="TenMostExpensiveProductsLine" Description="Ten Most Expensive Products" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart Type="line"/>
+		</Recordset>
+		<Recordset Id="TenMostExpensiveProductsBar" Description="Ten Most Expensive Products" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart Type="bar"/>
+		</Recordset>
+		<Recordset Id="TenMostExpensiveProductsColumn" Description="Ten Most Expensive Products" Display="false">
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,5			]]></Sql>
+		<Chart Type="column"/>
+		</Recordset>
+	</Report>	
+	
+	
+</Reports>

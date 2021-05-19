@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="CalculatedColumn" Description="Column Calculation" TemplateName="HTML:Default.html">
+		<Recordset Id="OriginalData" Description="The consolidator is on the table below"
+			PageSize="10" >
+			<Sql><![CDATA[SELECT P.ProductName, C.CategoryName, P.UnitsInStock, P.ReorderLevel, P.Discontinued 
+FROM Categories C INNER JOIN Products P ON C.CategoryID = P.CategoryID
+			]]></Sql>
+			<Columns>
+				<Column Id="Discontinued" Type="MAPPED" MappedDataNotFound="Undefined"
+					AllowFilter="true">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+				<Column Id="ReorderStatus" Expression="(UnitsInStock > ReorderLevel) ? 'OK': 'ORDER'"
+					AllowFilter="true" Type="TEXT" StyleExpression="((UnitsInStock > ReorderLevel)? 'font-green bold':'')"/>
+				<Column Id="MinimunOrder"
+					Expression="(ReorderLevel-UnitsInStock)>0 ? (ReorderLevel-UnitsInStock) : '-'"
+					Type="TEXT" />
+			</Columns>
+		</Recordset>
+		<Recordset Id="OriginalData" Description="The consolidator is on the table below"
+			PageSize="10" >
+			<Sql><![CDATA[SELECT P.ProductName, C.CategoryName, P.UnitsInStock, P.ReorderLevel, P.Discontinued 
+FROM Categories C INNER JOIN Products P ON C.CategoryID = P.CategoryID
+			]]></Sql>
+			<Columns>
+				<Column Id="Discontinued" Type="MAPPED" MappedDataNotFound="Undefined"
+					AllowFilter="true">
+					<ColumnMap Key="1" MessageKey="Active" />
+					<ColumnMap Key="0" MessageKey="Discontinued" />
+				</Column>
+				<Column Id="ReorderStatus" Expression="(UnitsInStock > ReorderLevel) ? 'OK': 'ORDER'"
+					AllowFilter="true" Type="TEXT" StyleExpression="((UnitsInStock > ReorderLevel)? 'font-green bold':'')"/>
+				<Column Id="MinimunOrder"
+					Expression="(ReorderLevel-UnitsInStock)>0 ? (ReorderLevel-UnitsInStock) : '-'"
+					Type="TEXT" />
+			</Columns>
+		</Recordset>
+	</Report>
+</Reports>

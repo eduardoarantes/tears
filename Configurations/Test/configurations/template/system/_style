@@ -1,0 +1,93 @@
+.groupByTableWrapper {
+	margin-top: 5px;
+}
+
+.detailTable {
+	width: 100%;
+}
+
+.detailContent {
+	width: 100%;
+}
+
+.groupByTable {
+	width: 100%;
+}
+
+.groupByTableContent {
+	width: 100%;
+}
+
+.groupByHeader {
+	width: 100%;
+}
+
+.detailTable {
+	
+}
+
+.detailTable .detailTableHeader tr th {
+	color: #800000;
+	background-color: #F0F0F0;
+}
+
+.detailTableRowCountHeader {
+	
+}
+
+.detailContent {
+	
+}
+
+.groupByHeader {
+	font-size: medium;
+	color: #800000;
+	border-top: solid 2px #800000; 
+}
+
+.groupByTable {
+	
+}
+
+.groupByTable  .groupByTableHeader tr th{
+	color: #800000;
+	background-color: #D0D0D0;
+}
+
+.groupByCountHeader {
+	
+}
+
+.groupByTableContent {
+	
+}
+
+.groupByHeader {
+	background-color: #E3D4D4;
+}
+
+.groupByHeaderSeparator {
+	color: ;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+.groupByContent{
+	padding-bottom: 5px;
+}
+
+.toolTip{
+	z-index: 6;
+	position: absolute;
+	background: #F0F0F0;
+	border-top: solid 2px #800000; 
+	border-bottom: solid 2px #800000; 
+	border-left: solid 1px #800000; 
+	border-right: solid 1px #800000; 
+	min-width: 100px;
+	padding: 2px;
+}
+
+.mouseOverArea span{
+	text-decoration: underline;
+	color: #800000;
+}

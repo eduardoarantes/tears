@@ -1,0 +1,126 @@
+#macro( nullHandle $value)
+  #if( $value )
+      $value
+  #end
+#end
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+			}
+			@page {
+				size: A4;
+				margin-top: 0.65in;
+				margin-right: 0in;
+				margin-left: 0in;
+				margin-bottom: 0.25in;
+				font-family: sans-serif;
+				
+				@top-center {
+					content: "Produzido por Trigger Solu��es Ltda.";
+					background-image: url("http://localhost:8080/tears/images/head.gif");
+					background-repeat: no-repeat;
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+				@bottom-center {
+					content: "Page " counter(page) " of " counter(pages);
+					background-color: #c61a1f;
+					width: 100%;
+					font-family: sans-serif;
+				}
+			}
+			
+			table.report{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.report th{
+				text-align: center;
+				font-size: 8pt;
+				background-color: #bbb;
+			}
+			table.report tr.rowtype0{
+				background-color: #fdd;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.report tr.rowtype1{
+				background-color: #fff;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+			}
+			table.report tr td{
+				border: 0px;
+				padding: 2px;
+				margin: 0px;
+				font-size: 6pt;	
+			}
+			table.header{
+				margin: 10px;
+				border: solid 1px #000;
+			}
+			table.header tr td.label{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: right;
+			}
+			table.header tr td.value{
+				border: 0px;
+				margin: 0px;
+				text-align: center;
+				font-size: 8pt;
+				background-color: #fff;
+				text-align: left;
+			}
+			table{
+			 	-fs-table-paginate:paginate;
+			 }
+			#content{
+				text-align: center;
+			}
+			.background-red {
+				background-color: #F00;
+			}
+			
+			.background-yellow {
+				background-color: #FF0;
+			}
+			
+			.background-green {
+				background-color: #0F0;
+			}
+			
+			.font-red {
+				color: #F00;
+			}
+			
+			.font-yellow {
+				color: #FF0;
+			}
+			
+			.font-green {
+				color: #0F0;
+			}
+			.bold{
+				font-weight: bold;
+			}
+			.italic{
+				font-style: italic;
+			}
+						
+		</style>
+	</head>
+	<body>
+	<div id="content">
+		$fullData
+	</div>
+	</body>
+</html>

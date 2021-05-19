@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="StockCandleStick" Description="Demostração do gráfico Candle Stick">
+		<ReportParameters>
+		<ReportParameter Id="stockID" Type="QUERY">
+		<ReportParameterSql key="stock" value="stock"><sql><![CDATA[SELECT DISTINCT stock from Stock]]></sql></ReportParameterSql>
+		</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="StockCandleStick" Description="Demostração do gráfico Candle Stick">
+			<Sql><![CDATA[SELECT * FROM Stock where stock = #{stockID}
+			]]></Sql>
+			
+		</Recordset>
+
+	</Report>
+</Reports>

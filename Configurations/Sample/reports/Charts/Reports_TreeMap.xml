@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd"
+	Version="1.0">
+	<Report Id="TreeMapChartSample" Description="TreeMap Charts without table">
+		<Recordset Id="TreeMapChartType" Description="Default chart Type is defined to be Column">
+			<Sql><![CDATA[
+select s.CompanyName, o.ShipCity, count(*) itens, sum(od.Quantity) total
+from Order_Details od, Orders o, Shippers s, Products p
+where od.OrderID = o.OrderID and o.ShipVia = s.ShipperID and od.ProductID = p.ProductID
+and p.ProductID in (17)
+group by s.CompanyName, p.ProductName, p.ProductID, o.ShipCity			
+					]]></Sql>
+			<Chart Provider="google" Type="drastictreemap" />
+		</Recordset>
+	</Report>
+</Reports>

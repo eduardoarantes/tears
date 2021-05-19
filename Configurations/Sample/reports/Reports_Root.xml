@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.2/Report.xsd" Version="1.0">
+	<Report Id="SimpleReportWithPagination" Title="Simple Report" Description="This is just a SQL statement with the defaul pagination value">
+		<Recordset Id="SimpleReportWithPagination" Title="Simple Report With Pagination" Description="This is just a SQL statement with the defaul pagination value">
+			<Sql><![CDATA[SELECT DISTINCT ProductName, UnitPrice
+FROM Products
+WHERE UnitPrice>(SELECT AVG(UnitPrice) From Products)
+ORDER BY UnitPrice DESC]]></Sql>
+		</Recordset>
+
+	</Report>
+	<Report Id="MostSimpleReport" Title="Most Simple Report" Description="This is the most simple report, just a SQL statement">
+		<Recordset Id="MostSimpleReport" Title="Most Simple Report" Description="This is the most simple report, just a SQL statement" >
+			<Sql><![CDATA[SELECT DISTINCTROW ProductName AS TenMostExpensiveProducts, UnitPrice
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 0,10			]]></Sql>
+		</Recordset>
+	</Report>
+</Reports>

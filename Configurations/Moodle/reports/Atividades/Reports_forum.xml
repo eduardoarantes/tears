@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="ForunsPorCurso" Description="Lista de Fórums por curso">
+		<ReportParameters>
+			<ReportParameter Id="course" Type="QUERY">
+				<ReportParameterSql>
+					<sql>SELECT id  AS "KEY", shortname as "VALUE" FROM #{table.prefix}course order by shortname</sql>
+				</ReportParameterSql>
+			</ReportParameter>
+		</ReportParameters>
+		<Recordset Id="ForunsPorCurso" Description="Lista de Fórums por curso">
+			<Sql><![CDATA[
+select f.id, f.type, f.name, count(distinct fd.id) discussions, count(fp.discussion) posts
+from #{table.prefix}forum f inner join #{table.prefix}forum_discussions fd
+on f.id = fd.forum and f.course = fd.course
+inner join #{table.prefix}forum_posts fp on fd.id = fp.discussion
+where f.course = #{course}
+group by f.id, f.type, f.name]]></Sql>
+			<Columns>
+				<Column Id="type" Description="Tipo" />
+				<Column Id="name" Description="Nome" />
+				<Column Id="discussions" Description="Discussoes" Type="INTEGER"/>
+				<Column Id="posts" Description="Mensagens" Type="INTEGER"/>
+			</Columns>
+		</Recordset>
+	</Report>
+
+</Reports>

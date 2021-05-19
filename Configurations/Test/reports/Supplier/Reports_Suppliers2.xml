@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0/Report.xsd" Version="1.0">
+	<Report Id="Supplier" Description="Specific Supplier"
+		IsMainReport="false">
+		<ReportParameters>
+			<ReportParameter Id="supplierID" Required="true"
+				Description="Supplier Id" Type="INTEGER" />
+		</ReportParameters>
+		<Recordset Id="SupplierInfo" DefaultSortColumn="CompanyName"
+			Description="Simple SQL with parameter. It receives the 'supplierId' information from out side. Sub report, can not be accessed from main menu.">
+			<Sql><![CDATA[SELECT SupplierID, CompanyName, ContactName, ContactTitle
+, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage
+FROM Suppliers 
+WHERE SupplierID = #{supplierID}
+			]]></Sql>
+		</Recordset>
+	</Report>
+</Reports>

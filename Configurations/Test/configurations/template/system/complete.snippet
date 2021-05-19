@@ -1,0 +1,32 @@
+#macro( nullHandle $value)
+  #if( $value )
+      $value
+  #end
+#end
+
+#foreach($entry in $report.entrySet())
+	
+	<div class="container_header">
+	<table class="header">
+		<tr><td class="label_id">Id: </td><td class="value value_id">#nullHandle($entry.key.id)</td></tr>
+		<tr><td class="label_description">Description: </td><td class="value value_description">#nullHandle($entry.key.description)</td></tr>
+	</table>
+	</div>
+	
+	
+	<table class="report report_$entry.key.id">
+	#foreach($columns in $loopTool.watch($entry.value))
+		#if($loopTool.count == 1)
+			#foreach($column in $columns)
+				<th>$column.column.description</th>
+			#end
+		#end
+		#set($row = $loopTool.count % 2)
+		<tr class="rowtype$row">
+		#foreach($column in $columns)
+			<td>$column.value.formatedValue</td>
+		#end
+		</tr>
+	#end
+	</table>
+#end

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.triggersolucoes.com/tears/1.0.1/Report.xsd"
+	Version="1.0.1">
+	<Report Id="ListadeDialogos" Description="Lista de Dialogos">
+		<ReportParameters>
+			<ReportParameter Id="course" Type="STRING"
+				Required="false" DefaultValue="%" Description="Nome do dialogo" />
+		</ReportParameters>
+		<Recordset Id="ListadeDialogos" Description="Lista de Dialogos">
+			<Sql><![CDATA[
+			SELECT id, name FROM #{table.prefix}dialogue where course = #{course};			
+			]]></Sql>
+			<Columns>
+				<Column Id="id" >
+				</Column>
+				<Column Id="name" Description="Nome" />
+			</Columns>
+		</Recordset>
+	</Report>
+
+</Reports>
